@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kwe'sx Nasa Kwekwe · Partes del cuerpo en Nasa Yuwe</title>
+  <meta name="description" content="App interactiva para aprender las partes del cuerpo (kwe'sx nasa kwekwe) en lengua Nasa Yuwe, con fotografías reales." />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="cabecera">
+    <div class="franja-tejida" aria-hidden="true"></div>
+    <div class="cabecera-inner">
+      <div class="marca">
+        <span class="marca-emblema" aria-hidden="true">◆</span>
+        <div>
+          <h1>Kwe'sx Nasa Kwekwe</h1>
+          <p class="subtitulo">Las partes del cuerpo en <strong>Nasa Yuwe</strong></p>
+        </div>
+      </div>
+      <button id="btn-todo-audio" class="btn btn-ghost" title="Revisar qué audios están presentes en la carpeta audios/">
+        🔊 Probar audios
+      </button>
+    </div>
+  </header>
+
+  <nav class="pestanas" role="tablist" aria-label="Secciones de la app">
+    <button class="pestana activa" data-vista="galeria" role="tab" aria-selected="true">📷 Galería</button>
+    <button class="pestana" data-vista="tarjetas" role="tab" aria-selected="false">🃏 Tarjetas</button>
+    <button class="pestana" data-vista="juego" role="tab" aria-selected="false">🎯 Juego</button>
+    <button class="pestana" data-vista="memoria" role="tab" aria-selected="false">🧠 Memoria</button>
+  </nav>
+
+  <main class="contenido">
+
+    <!-- ===================== VISTA: GALERÍA ===================== -->
+    <section id="vista-galeria" class="vista activa" role="tabpanel">
+      <p class="vista-descripcion">Toca una fotografía para ver su nombre en <strong>Nasa Yuwe</strong> y escuchar su pronunciación.</p>
+      <div class="barra-filtros" id="filtros-region" aria-label="Filtrar por región"></div>
+      <div class="rejilla-galeria" id="rejilla-galeria"></div>
+    </section>
+
+    <!-- ===================== VISTA: TARJETAS ===================== -->
+    <section id="vista-tarjetas" class="vista" role="tabpanel">
+      <p class="vista-descripcion">Voltea cada tarjeta: fotografía ↔ nombre en Nasa Yuwe y español.</p>
+      <div class="barra-filtros" id="filtros-region-tarjetas" aria-label="Filtrar por región"></div>
+      <div class="rejilla-tarjetas" id="rejilla-tarjetas"></div>
+    </section>
+
+    <!-- ===================== VISTA: JUEGO ===================== -->
+    <section id="vista-juego" class="vista" role="tabpanel">
+      <div class="juego-caja">
+        <div class="juego-marcador">
+          <span>Aciertos: <b id="juego-aciertos">0</b></span>
+          <span>Racha: <b id="juego-racha">0</b> 🔥</span>
+          <span>Pregunta <b id="juego-num">1</b>/10</span>
+        </div>
+        <div class="juego-pregunta" id="juego-pregunta"></div>
+        <div class="juego-opciones" id="juego-opciones"></div>
+        <button class="btn btn-primario oculto" id="juego-reiniciar" type="button">Jugar de nuevo</button>
+      </div>
+    </section>
+
+    <!-- ===================== VISTA: MEMORIA ===================== -->
+    <section id="vista-memoria" class="vista" role="tabpanel">
+      <div class="memoria-caja">
+        <p class="memoria-instruccion">Encuentra la pareja: palabra en <strong>Nasa Yuwe</strong> ↔ significado en <strong>español</strong>.</p>
+        <div class="memoria-marcador">
+          <span>Parejas: <b id="memoria-parejas">0</b>/8</span>
+          <button class="btn btn-ghost" id="memoria-reiniciar" type="button">🔄 Reiniciar</button>
+        </div>
+        <div class="rejilla-memoria" id="rejilla-memoria"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="pie">
+    <p>
+      <strong>Kwe'sx Nasa Kwekwe</strong> · Material educativo de revitalización lingüística.
+      Vocabulario a partir del documento <em>Kwekwe Nasa – Partes del cuerpo (Nasa Yuwe – Español, IV semestre)</em>.
+      Se conservan las grafías tal como aparecen en la fuente.
+    </p>
+    <p class="pie-audio-note">Las fotografías se cargan desde la carpeta <code>img/</code> y los audios desde <code>audios/</code>. Consulta <code>INSTRUCCIONES_AUDIOS.md</code>.</p>
+  </footer>
+
+  <!-- ===================== MODAL DE DETALLE ===================== -->
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Detalle de la parte del cuerpo">
+    <div class="modal-fondo" id="modal-fondo"></div>
+    <div class="modal-caja">
+      <button class="modal-cerrar" id="modal-cerrar" type="button" aria-label="Cerrar">✕</button>
+      <img class="modal-img" id="modal-img" alt="" />
+      <div class="modal-cuerpo">
+        <span class="etiqueta-region" id="modal-region"></span>
+        <h2 class="ny-grande" id="modal-ny"></h2>
+        <p class="es-medio" id="modal-es"></p>
+        <p class="nota" id="modal-nota"></p>
+        <button class="btn btn-audio" id="modal-audio" type="button">🔊 Escuchar</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
